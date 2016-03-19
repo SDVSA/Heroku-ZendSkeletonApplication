@@ -1,0 +1,7 @@
+{
+  "name": "Zend Framework Skeleton Application",
+  "description": "A Zend Framework Skeleton Application",
+  "repository": "https://github.com/NeftaliYagua/Heroku-ZendSkeletonApplication",
+  "logo": "https://neftaliyagua.com.ve/img/logos/zend.jpg",
+  "keywords": ["php", "zf2", "Zend Framework 2"]
+}
