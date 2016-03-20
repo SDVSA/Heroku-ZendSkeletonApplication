@@ -3,8 +3,10 @@ ZendSkeletonApplication Heroku Package
 
 ### This is a heroku package install
 Click here for instant install:
-https://heroku.com/deploy?template=https://github.com/NeftaliYagua/Heroku-ZendSkeletonApplication
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+https://heroku.com/deploy?template=https://github.com/NeftaliYagua/Heroku-ZendSkeletonApplication
 
 ZendSkeletonApplication
 =======================
