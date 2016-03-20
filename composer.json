@@ -7,8 +7,16 @@
         "zf2"
     ],
     "homepage": "http://framework.zend.com/",
+    "success_url": "/",
     "require": {
         "php": ">=5.5",
+        "ext-intl": "*",
         "zendframework/zendframework": "~2.5"
-    }
+    },
+    "image": "heroku/php",
+    "buildpacks": [
+      {
+        "url": "https://github.com/heroku/heroku-buildpack-php"
+      }
+    ]
 }
