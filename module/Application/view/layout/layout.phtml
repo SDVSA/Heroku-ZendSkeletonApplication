@@ -1,55 +1,116 @@
 <?php echo $this->doctype(); ?>
-
-<html lang="en">
-    <head>
+<html lang="es"><head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle(getenv('NETWORK') . ' ' . getenv('MODULO'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
-        <?php echo $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        <?php
+        echo $this->headMeta()
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                ->appendName('description', 'Descripcion')
+                ->appendName('author', 'Neftalí Yagua')
+                ->appendName('HandheldFriendly', 'True')
+                ->appendName('MobileOptimized', '320')
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge,chrome=1')
         ?>
-
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
         <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath('css/style.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+        <?php
+        echo $this->headLink()
+                ->appendStylesheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/start/jquery-ui.css')
+//                ->appendStylesheet($this->basePath('css/reset.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/style.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/colors.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/print.css?v=1'), 'print')
+//                ->appendStylesheet($this->basePath('css/480.css?v=1'), 'only all and (min-width: 480px)')
+//                ->appendStylesheet($this->basePath('css/768.css?v=1'), 'only all and (min-width: 768px)')
+//                ->appendStylesheet($this->basePath('css/992.css?v=1'), 'only all and (min-width: 992px)')
+//                ->appendStylesheet($this->basePath('css/1200.css?v=1'), 'only all and (min-width: 1200px)')
+//                ->appendStylesheet($this->basePath('css/2x.css?v=1'), 'only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)')
+//                ->appendStylesheet('http://fonts.googleapis.com/css?family=Open+Sans:300')
+//                ->appendStylesheet($this->basePath('css/styles/agenda.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/styles/dashboard.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/styles/form.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/styles/modal.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/styles/progress-slider.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/styles/switches.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/styles/files.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/styles/table.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/styles/calendars.css?v=1'))
+//                ->appendStylesheet($this->basePath('css/jquery.dataTables.css'))
+        ?>
+        <style type="text/css">
+            body{
+                background: url(/img/bg-linen.jpg);
+            }
+            main.container {
+                background-color: #FFFFFF;
+                box-shadow: 0 0 20px 5px #808080;
+                padding-top: 15px;  
+                margin-bottom: 15px;
+                border-radius: 6px;
+            }
+        </style>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="<?php echo $this->basePath() ?>/../../favicon.ico">
 
-        <!-- Scripts -->
-        <?php echo $this->headScript()
-            ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery.min.js'))
-            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
-        ; ?>
+        <title><?php echo getenv('NETWORK') . ' ' . getenv('MODULO') ?></title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="<?php echo $this->basePath() ?>/../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="<?php echo $this->basePath() ?>/../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="<?php echo $this->basePath() ?>/../../assets/js/ie-emulation-modes-warning.js"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
     </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('NicVE') ?></a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </nav>
-        <div class="container">
+    <!-- NAVBAR
+    ================================================== -->
+    <body data-pinterest-extension-installed="cr1.39.1">
+
+        <?php $this->navigation('navigation')->menu()->setPartial(array('navigation/navegacion.phtml', 'navigation')); ?>
+        <?php echo $this->navigation('navigation')->menu()->render() ?>
+
+        <main class="container">
+
             <?php echo $this->content; ?>
-            <hr>
-            <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
-            </footer>
-        </div> <!-- /container -->
+
+            <hr class="featurette-divider">
+
+        </main>
+        <footer class="container">
+            <p>© 2004 - <?php echo date("Y"); ?> <a href="http://coderic.co.ve/" rel="author">Coderic, S.A.</a> · <a href="#">Políticas de privacidad</a> · <a href="#">Términos y condiciones</a></p>
+        </footer>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+        <script src="<?php echo $this->basePath() ?>/../../dist/js/bootstrap.min.js"></script>
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+        <script src="<?php echo $this->basePath() ?>/../../assets/js/vendor/holder.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="<?php echo $this->basePath() ?>/../../assets/js/ie10-viewport-bug-workaround.js"></script>
         <?php echo $this->inlineScript() ?>
     </body>
 </html>

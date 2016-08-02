@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Global Configuration Override
  *
@@ -10,7 +11,17 @@
  * control, so do not include passwords or other sensitive information in this
  * file.
  */
-
 return array(
-    // ...
+    'db' => array(
+        'dsn' => getenv("DATABASE_TYPE") . ':dbname=' . getenv("DATABASE_NAME") . ';host=' . getenv("DATABASE_HOST") . ';port=' . getenv("DATABASE_PORT"),
+        'username' => getenv("DATABASE_USER"),
+        'password' => getenv("DATABASE_PASS"),
+    ),
+    'facebook_sdk' => array(
+        array(
+            'app_id' => getenv('FACEBOOK_APP_ID'),
+            'app_secret' => getenv('FACEBOOK_APP_SECRET'),
+            'default_graph_version' => getenv('FACEBOOK_VERSION'),
+        )
+    ),
 );
