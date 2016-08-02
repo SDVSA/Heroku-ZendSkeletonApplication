@@ -27,7 +27,7 @@ return array(
             'administration' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/admin/',
+                    'route' => '/',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Administration\Controller',
                         'controller' => 'Index',
