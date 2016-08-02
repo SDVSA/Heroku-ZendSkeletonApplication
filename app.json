@@ -1,16 +1,18 @@
 {
-  "name": "ZendSkeletonApplication",
-  "description": "A Zend Framework Skeleton Application",
-  "repository": "https://github.com/NeftaliYagua/Heroku-ZendSkeletonApplication",
-  "logo": "http://framework.zend.com/images/logos/zf2-logo-mark.png",
-  "author": "Zend Technologies Ltd <neftali.yagua@gmail.com>",
-  "website": "http://framework.zend.com/",
+  "name": "SDV",
+  "description": "Sistemas de Venezuela",
+  "keywords": [
+    "Sistemas de Venezuela"
+  ],
+  "author": "Neftalí Yagua <neftali.yagua@gmail.com>",
+  "website": "http://sdv.com.ve/",
   "success_url": "/",
-  "keywords": ["php", "zf2", "Zend Framework 2", "Zend", "Framework", "ZendFramework", "Zend Framework", "ZendSkeletonApplication", "ZendSkeleton"],
+  "repository": "https://github.com/SistemasDeVenezuela/sdv.com.ve",
+  "logo": "https://avatars1.githubusercontent.com/u/5238950?v=3&s=200",
   "image": "heroku/php",
   "buildpacks": [
     {
-    "url": "https://github.com/heroku/heroku-buildpack-php"
+      "url": "https://github.com/heroku/heroku-buildpack-php"
     }
   ]
 }
