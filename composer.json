@@ -9,6 +9,7 @@
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.5",
+        "intl": "*",
         "ext-intl": "*",
         "zendframework/zendframework": "~2.5",
         "google/identity-toolkit-php-client": "^1.0",
