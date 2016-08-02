@@ -1,6 +1,6 @@
 {
-    "name": "heroku/zendframework-skeleton-application",
-    "description": "Skeleton Application for ZF2",
+    "name": "SDVSA/nicve",
+    "description": "Sistema de administración de dominios",
     "license": "BSD-3-Clause",
     "keywords": [
         "framework",
@@ -10,6 +10,9 @@
     "require": {
         "php": ">=5.5",
         "ext-intl": "*",
-        "zendframework/zendframework": "~2.5"
+        "zendframework/zendframework": "~2.5",
+        "google/identity-toolkit-php-client": "^1.0",
+        "facebook/php-sdk-v4": "^5.1",
+        "guzzlehttp/guzzle": "^6.1"
     }
 }
