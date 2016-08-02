@@ -13,18 +13,6 @@ return array(
         /* Módulos de control */
         'Administration',
         'Autenticacion',
-//        /* Módulos de aplicaciones */
-        'Administrativo',
-        'Transporte',
-        'Medico',
-        'Contaduria',
-        'Educativo',
-        'Encomiendas',
-        'Juridico',
-        'Unitaxi',
-        'Vacante',
-        'Vitae',
-        'Protejo',
     ),
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(
@@ -34,7 +22,6 @@ return array(
         // Module class.
         'module_paths' => array(
             './module',
-            './submodule',
             './vendor',
         ),
         // An array of paths from which to glob configuration files after
