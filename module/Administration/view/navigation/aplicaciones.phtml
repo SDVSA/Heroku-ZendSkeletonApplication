@@ -1,0 +1,16 @@
+
+<ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
+    <?php foreach ($this->container as $page) : ?>
+        <?php if ($page->isVisible()): ?>
+            <?php if ($this->navigation()->accept($page)): ?>
+                <li class="<?php echo ($page->get("last")) ? 'at-bottom' : NULL; ?> <?php echo ($page->isActive()) ? 'current' : NULL; ?>">
+                    <a href="<?php echo $page->getHref() ?>" class="<?php echo $page->get("class") ?>" title="<?php echo $page->getLabel() ?>">
+                        <?php echo $page->getLabel() ?>
+                    </a>
+                </li>  
+            <?php else: ?>
+                <li><span class="<?php echo $page->get("class") ?>" title="<?php echo $page->getLabel() ?>"><?php echo $page->getLabel() ?></span></li> 
+            <?php endif ?>
+        <?php endif ?>
+    <?php endforeach ?>
+</ul>

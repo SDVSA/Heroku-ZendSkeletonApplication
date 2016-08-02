@@ -1,0 +1,458 @@
+<?php $this->plugin("dateFormat")->setTimezone("America/Caracas"); ?>
+<?php echo $this->doctype(); ?>
+
+<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" lang="en"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="en"><![endif]-->
+<!--[if (gt IE 9)|(gt IEMobile 7)]>
+<!--><html class="no-js" lang="es"><!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle(getenv('NETWORK') . " " . getenv('MODULO'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php
+        echo $this->headMeta()
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                ->appendName('description', 'Descripcion')
+                ->appendName('author', 'Neftalí Yagua')
+                ->appendName('HandheldFriendly', 'True')
+                ->appendName('MobileOptimized', '320')
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge,chrome=1')
+        ?>
+
+        <!-- Le styles -->
+        <?php
+        echo $this->headLink()
+// ->appendStylesheet('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/start/jquery-ui.css')
+                ->appendStylesheet($this->basePath('css/reset.css?v=1'))
+                ->appendStylesheet($this->basePath('css/style.css?v=1'))
+                ->appendStylesheet($this->basePath('css/colors.css?v=1'))
+                ->appendStylesheet($this->basePath('css/print.css?v=1'), 'print')
+                ->appendStylesheet($this->basePath('css/480.css?v=1'), 'only all and (min-width: 480px)')
+                ->appendStylesheet($this->basePath('css/768.css?v=1'), 'only all and (min-width: 768px)')
+                ->appendStylesheet($this->basePath('css/992.css?v=1'), 'only all and (min-width: 992px)')
+                ->appendStylesheet($this->basePath('css/1200.css?v=1'), 'only all and (min-width: 1200px)')
+                ->appendStylesheet($this->basePath('css/2x.css?v=1'), 'only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)')
+                ->appendStylesheet('//fonts.googleapis.com/css?family=Open+Sans:300')
+                ->appendStylesheet($this->basePath('css/styles/agenda.css?v=1'))
+                ->appendStylesheet($this->basePath('css/styles/dashboard.css?v=1'))
+                ->appendStylesheet($this->basePath('css/styles/form.css?v=1'))
+                ->appendStylesheet($this->basePath('css/styles/modal.css?v=1'))
+                ->appendStylesheet($this->basePath('css/styles/progress-slider.css?v=1'))
+                ->appendStylesheet($this->basePath('css/styles/switches.css?v=1'))
+                ->appendStylesheet($this->basePath('css/styles/files.css?v=1'))
+                ->appendStylesheet($this->basePath('css/styles/table.css?v=1'))
+                ->appendStylesheet($this->basePath('css/styles/calendars.css?v=1'))
+                ->appendStylesheet($this->basePath('css/jquery.dataTables.css'))
+//// ->appendStylesheet($this->basePath('js/libs/CLEditor/jquery.cleditor.css'))
+//// ->appendStylesheet($this->basePath('js/libs/formValidator/developr.validationEngine.css'))
+//// ->appendStylesheet($this->basePath('css/style.css'))
+// ->appendStylesheet($this->basePath('css/administration.css'))
+        ?>
+        <!-- JavaScript at bottom except for Modernizr -->
+        <script src="<?php echo $this->basePath() ?>/js/libs/modernizr.custom.js"></script>
+        <link rel="shortcut icon" href="<?php echo $this->basePath() ?>/img/favicons/favicon.png">
+        <!-- For everything else -->
+        <link rel="shortcut icon" href="<?php echo $this->basePath() ?>/img/favicons/favicon.ico">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css">
+        <style>
+            *, *:before, *:after {
+                -webkit-box-sizing: content-box;
+                -moz-box-sizing: content-box;
+                box-sizing: content-box;
+            }
+        </style>
+        <!-- For retina screens -->
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo $this->basePath() ?>/img/favicons/apple-touch-icon-retina.png">
+        <!-- For iPad 1-->
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo $this->basePath() ?>/img/favicons/apple-touch-icon-ipad.png">
+        <!-- For iPhone 3G, iPod Touch and Android -->
+        <link rel="apple-touch-icon-precomposed" href="<?php echo $this->basePath() ?>/img/favicons/apple-touch-icon.png">
+
+        <!-- iOS web-app metas -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <!-- Startup image for web apps -->
+        <link rel="apple-touch-startup-image" href="<?php echo $this->basePath() ?>/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="apple-touch-startup-image" href="<?php echo $this->basePath() ?>/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="<?php echo $this->basePath() ?>/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
+        <!-- Microsoft clear type rendering -->
+        <meta http-equiv="cleartype" content="on">
+        <meta name="application-name" content="<?php echo getenv('NETWORK') ?>">
+        <meta name="msapplication-tooltip" content="Panel de administración.">
+        <meta name="msapplication-starturl" content="http://sistravel.net/">
+        <meta name="msapplication-task" content="name=Booking;action-uri=http://sistravel.net/booking;icon-uri=http://sistravel.net/img/favicons/favicon.ico">
+        <meta name="msapplication-task" content="name=Mensajes;action-uri=http://sistravel.net/mensajes;icon-uri=http://sistravel.net/img/favicons/favicon.ico">
+    </head>
+
+    <body class="clearfix with-menu with-shortcuts">
+
+        <!-- Prompt IE 6 users to install Chrome Frame -->
+        <!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em><a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+        <!-- Title bar -->
+        <header role="banner" id="title-bar">
+            <a href="/admin/" class="button black-gradient float-left"><span class="glyphicon glyphicon-home"></span></a>
+            <a href="/login/salir" class="button black-gradient float-right"><span class="glyphicon glyphicon-log-out"></span></a>
+            <h2><?php echo getenv('NETWORK') . " " . getenv('MODULO') ?></h2>
+        </header>
+        <!-- Button to open/hide menu -->
+        <a href="#" id="open-menu"><span>Menu</span></a>
+
+        <!-- Button to open/hide shortcuts -->
+        <a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+
+
+        <!-- Main content -->
+        <main role="main" id="main">
+            <!--nav class="navbar navbar-default navbar-static-top">
+                <div class="container-fluid">
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand page-scroll" href="http://www.coderic.co.ve">Nombre Empresa, S.A.</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="glyphicon glyphicon-home"></i> Inicio <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/">Submenu 1</a></li>
+                                    <li><a href="/">Submenu 2</a></li>
+                                    <li><a href="/">Submenu 3</a></li>
+                                    <li><a href="/">Submenu 4</a></li>
+                                    <li><a href="/">Submenu 5</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Menú 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/">Submenu 1</a></li>
+                                    <li><a href="/">Submenu 2</a></li>
+                                    <li><a href="/">Submenu 3</a></li>
+                                    <li><a href="/">Submenu 4</a></li>
+                                    <li><a href="/">Submenu 5</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Menú 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/">Submenu 1</a></li>
+                                    <li><a href="/">Submenu 2</a></li>
+                                    <li><a href="/">Submenu 3</a></li>
+                                    <li><a href="/">Submenu 4</a></li>
+                                    <li><a href="/">Submenu 5</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Menú 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/">Submenu 1</a></li>
+                                    <li><a href="/">Submenu 2</a></li>
+                                    <li><a href="/">Submenu 3</a></li>
+                                    <li><a href="/">Submenu 4</a></li>
+                                    <li><a href="/">Submenu 5</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Menú 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/">Submenu 1</a></li>
+                                    <li><a href="/">Submenu 2</a></li>
+                                    <li><a href="/">Submenu 3</a></li>
+                                    <li><a href="/">Submenu 4</a></li>
+                                    <li><a href="/">Submenu 5</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Menú 5 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/">Submenu 1</a></li>
+                                    <li><a href="/">Submenu 2</a></li>
+                                    <li><a href="/">Submenu 3</a></li>
+                                    <li><a href="/">Submenu 4</a></li>
+                                    <li><a href="/">Submenu 5</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav-->
+            <?php echo $this->content; ?>
+        </main>
+        <!-- End main content -->
+
+        <!-- Side tabs shortcuts -->
+
+        <?php $this->navigation('Zend\Navigation\Aplicaciones')->menu()->setPartial(array('navigation/aplicaciones.phtml', 'Zend\Navigation\Aplicaciones')); ?>
+        <?php echo $this->navigation('Zend\Navigation\Aplicaciones')->menu()->render() ?>
+
+        <!-- Sidebar/drop-down menu -->
+        <section id="menu" role="complementary">
+
+            <!-- This wrapper is used by several responsive layouts -->
+            <div id="menu-content">
+
+                <header>
+                    Administrator
+                </header>
+
+                <div id="profile">
+                    <?php
+                    echo $this->gravatar('neftali.yagua@gmail.com')->setAttribs(array(
+                        'class' => 'user-icon',
+                        'alt' => 'Neftalí Yagua',
+                        'width' => 64,
+                        'height' => 64,
+                    ))->setImgSize(64)->setSecure(true);
+                    ?>
+                    Bienvenido
+                    <span class="name">Neftalí <b>Yagua</b></span>
+                    <?php echo $this->dateFormat(new DateTime(), \IntlDateFormatter::GREGORIAN, IntlDateFormatter::NONE, "es_VE"); ?>
+                    <?php echo $this->dateFormat(new DateTime(), \IntlDateFormatter::NONE, IntlDateFormatter::SHORT, "en_US"); ?>
+                </div>
+
+                <?php $this->navigation('Zend\Navigation\Opciones')->menu()->setPartial(array('navigation/opciones.phtml', 'Zend\Navigation\Opciones')); ?>
+                <?php echo $this->navigation('Zend\Navigation\Opciones')->menu()->render() ?>
+
+                <section class="navigable">
+                    <ul class="big-menu">
+                        <li class="with-right-arrow">
+                            <span><span class="list-count">7</span>Organizaciones</span>
+                            <ul class="big-menu">
+                                <li class="with-right-arrow">
+                                    <span>Coderic, S.A.</span>
+                                    <ul class="big-menu">
+                                        <li><a href="http://coderic.administrativo.coderic.co.ve/">Administrativo</a></li>
+                                        <li><a href="http://coderic.contaduria.coderic.co.ve/">Contaduría</a></li>
+                                        <li><a href="http://coderic.vacante.com.ve/">Recursos Humanos</a></li>
+                                        <li><a href="http://coderic.proyectos.coderic.co.ve/">Proyectos</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="with-right-arrow">
+                                    <span>Viajando a Los Roques, C.A.</span>
+                                    <ul class="big-menu">
+                                        <li><a href="http://viajandoalosroques.administrativo.coderic.co.ve/">Administrativo</a></li>
+                                        <li><a href="http://viajandoalosroques.vacante.com.ve/">Recursos Humanos</a></li>
+                                        <li><a href="http://viajandoalosroques.proyectos.coderic.co.ve/">Proyectos</a></li>
+                                        <li><a href="http://viajandoalosroques.reservas.sistravel.net/">Reservaciones</a></li>
+                                        <li><a href="http://viajandoalosroques.hoteles.sistravel.net/">Hotelería</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="with-right-arrow">
+                                    <span>Villas Paraiso Tropical S.A.</span>
+                                    <ul class="big-menu">
+                                        <li><a href="http://natuga.administrativo.coderic.co.ve/">Administrativo</a></li>
+                                        <li><a href="http://natuga.vacante.com.ve/">Recursos Humanos</a></li>
+                                        <li><a href="http://natuga.reservas.sistravel.net/">Reservaciones</a></li>
+                                        <li><a href="http://natuga.hoteles.sistravel.net/">Hotelería</a></li>
+                                        <li><a href="http://natuga.restaurant.sistravel.net/">Restaurante</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="with-right-arrow">
+                                    <span>SISTravel C.A.</span>
+                                    <ul class="big-menu">
+                                        <li><a href="http://sistravel.administrativo.coderic.co.ve/">Administrativo</a></li>
+                                        <li><a href="http://sistravel.contaduria.coderic.co.ve/">Contaduría</a></li>
+                                        <li><a href="http://sistravel.vacante.com.ve/">Recursos Humanos</a></li>
+                                        <li><a href="http://sistravel.proyectos.coderic.co.ve/">Proyectos</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="with-right-arrow">
+                                    <span>Inversiones Portal Gráfico, C.A.</span>
+                                    <ul class="big-menu">
+                                        <li><a href="http://intergrafica.proyectos.coderic.co.ve/">Proyectos</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="with-right-arrow">
+                                    <span>Tecnic Service LM, C.A.</span>
+                                    <ul class="big-menu">
+                                        <li><a href="http://tecnicservicelm.administrativo.coderic.co.ve/">Administrativo</a></li>
+                                        <li><a href="http://tecnicservicelm.contaduria.coderic.co.ve/">Contaduría</a></li>
+                                        <li><a href="http://tecnicservicelm.vacante.com.ve/">Recursos Humanos</a></li>
+                                        <li><a href="http://tecnicservicelm.soporte.coderic.co.ve/">Soporte</a></li>
+                                        <li><a href="http://tecnicservicelm.proyectos.coderic.co.ve/">Proyectos</a></li>
+                                    </ul>
+                                </li>
+                                <li class="with-right-arrow">
+                                    <span>OrbiTrans, C.A.</span>
+                                    <ul class="big-menu">
+                                        <li><a href="http://orbitrans.unitaxi.com.ve/">Transporte</a></li>
+                                        <li><a href="http://orbitrans.proyectos.coderic.co.ve/">Proyectos</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="with-right-arrow">
+                            <span><span class="list-count">9</span>Aplicaciones</span>
+                            <ul class="big-menu">
+                                <li><a href="http://os.coderic.co.ve/">Todo</a></li>
+                                <li><a href="http://administrativo.coderic.co.ve/">Administrativo</a></li>
+                                <li><a href="http://contaduria.coderic.co.ve/">Contaduría</a></li>
+                                <li><a href="http://vacante.com.ve/">Recursos Humanos</a></li>
+                                <li><a href="http://proyectos.coderic.co.ve/">Proyectos</a></li>
+                                <li><a href="http://soporte.coderic.co.ve/">Soporte</a></li>
+                                <li><a href="http://unitaxi.com.ve/">Transporte</a></li>
+                                <li><a href="http://reservas.sistravel.net/">Reservaciones</a></li>
+                                <li><a href="http://Hoteles.sistravel.net/">Hoteles</a></li>
+                                <li><a href="http://restaurant.sistravel.net/">Restaurantes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <!--ul class="unstyled-list">
+                <li class="title-menu">Today's event</li>
+                <li>
+                <ul class="calendar-menu">
+                <li>
+                <a href="#" title="See event">
+                <time datetime="2011-02-24"><b>24</b> Feb</time>
+                <small class="green">10:30</small>
+                Event's description
+               </a>
+                </li>
+                </ul>
+                </li>
+                <li class="title-menu">New messages</li>
+                <li>
+                <ul class="message-menu">
+                <li>
+                <span class="message-status">
+                <a href="#" class="starred" title="Starred">Starred</a>
+                <a href="#" class="new-message" title="Mark as read">New</a>
+                </span>
+                <span class="message-info">
+                <span class="blue">17:12</span>
+                <a href="#" class="attach" title="Download attachment">Attachment</a>
+                </span>
+                <a href="#" title="Read message">
+                <strong class="blue">John Doe</strong><br>
+                <strong>Mail subject</strong>
+               </a>
+                </li>
+                <li>
+                <a href="#" title="Read message">
+                <span class="message-status">
+                <span class="unstarred">Not starred</span>
+                <span class="new-message">New</span>
+                </span>
+                <span class="message-info">
+                <span class="blue">15:47</span>
+                </span>
+                <strong class="blue">May Starck</strong><br>
+                <strong>Mail subject a bit longer</strong>
+               </a>
+                </li>
+                <li>
+                <span class="message-status">
+                <span class="unstarred">Not starred</span>
+                </span>
+                <span class="message-info">
+                <span class="blue">15:12</span>
+                </span>
+                <strong class="blue">May Starck</strong><br>
+                Read message
+                </li>
+                </ul>
+                </li>
+                </ul-->
+
+            </div>
+            <!-- End content wrapper -->
+
+            <!-- This is optional -->
+            <footer id="menu-footer">
+                <p class="button-height">
+                    <input type="checkbox" name="auto-refresh" id="auto-refresh" checked="checked" class="switch float-right">
+                    <label for="auto-refresh">Sincronizar</label>
+                </p>
+            </footer>
+
+        </section>
+        <!-- End sidebar/drop-down menu -->
+
+        <!-- JavaScript at the bottom for fast page loading -->
+
+        <!-- Scripts -->
+        <script src="<?php echo $this->basePath() ?>/js/libs/jquery-1.7.2.min.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/setup.js"></script>
+
+        <!-- Template functions -->
+        <script src="<?php echo $this->basePath() ?>/js/developr.input.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.message.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.modal.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.navigable.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.notify.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.scroll.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.progress-slider.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.tooltip.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.confirm.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.agenda.js"></script>
+        <script src="<?php echo $this->basePath() ?>/js/developr.tabs.js"></script>		<!-- Must be loaded last -->
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <!-- Tinycon -->
+        <script src="<?php echo $this->basePath() ?>/js/libs/tinycon.min.js"></script>
+
+        <script type="text/javascript">
+            // Call template init (optional, but faster if called manually)
+            $.template.init();
+
+            // Favicon count
+            Tinycon.setBubble(2);
+
+            // If the browser support the Notification API, ask user for permission (with a little delay)
+            if (notify.hasNotificationAPI() && !notify.isNotificationPermissionSet())
+            {
+                setTimeout(function ()
+                {
+                    notify.showNotificationPermission('Your browser supports desktop notification, click here to enable them.', function ()
+                    {
+                        // Confirmation message
+                        if (notify.hasNotificationPermission())
+                        {
+                            notify('Notifications API enabled!', 'You can now see notifications even when the application is in background', {
+                                icon: '<?php echo $this->basePath() ?>/img/demo/icon.png',
+                                system: true
+                            });
+                        }
+                        else
+                        {
+                            notify('Notifications API disabled!', 'Desktop notifications will not be used.', {
+                                icon: '<?php echo $this->basePath() ?>/img/demo/icon.png'
+                            });
+                        }
+                    });
+
+                }, 2000);
+            }
+
+
+        </script>
+
+        <script src="//www.google.com/jsapi"></script>
+
+        <?php echo $this->inlineScript() ?>
+
+    </body>
+</html>

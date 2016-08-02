@@ -1,0 +1,20 @@
+
+<ul id="access" class="children-tooltip">
+    <?php foreach ($this->container as $page) : ?>
+        <?php if ($page->isVisible()): ?>
+            <?php if ($this->navigation()->accept($page)): ?>
+                <li<?php echo ($page->isActive()) ? ' class="current"' : NULL ?>>
+                    <a href="<?php echo $page->getHref() ?>" title="<?php echo $page->getLabel() ?>">
+                        <span class="<?php echo $page->get("class") ?>"></span>
+                        <?php echo ($page->get('count')) ? '<span class="count">' . $page->get('count') . '</span>' : NULL ?>
+                    </a>
+                </li>
+            <?php else: ?>
+                <li class="disabled">
+                    <span class="<?php echo $page->get("class") ?>" title="<?php echo $page->getLabel() ?>"><?php echo $page->getLabel() ?></span>
+                    <?php echo ($page->get('count')) ? '<span class="count">' . $page->get('count') . '</span>' : NULL ?>
+                </li> 
+            <?php endif ?>
+        <?php endif ?>
+    <?php endforeach ?>
+</ul>
