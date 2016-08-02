@@ -511,8 +511,8 @@ return array(
     'navigation' => array(
         'aplicaciones' => array(
             array(
-                'label' => 'Ubicación',
-                'route' => 'administration/ubicacion',
+                'label' => 'Dominios',
+                'route' => 'administration',
                 'class' => 'shortcut-dashboard',
             ),
             array(
